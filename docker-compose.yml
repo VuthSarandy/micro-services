@@ -216,7 +216,7 @@ services:
     ports:
       - "1680:1680"
     environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       eureka-server:
         condition: service_healthy
