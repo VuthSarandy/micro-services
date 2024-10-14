@@ -3,26 +3,41 @@ spring.application.name: user-service
 spring:
   profiles:
     active: dev
-
   data:
     mongodb:
-      uri: mongodb://sarandy:sarandy@mongodb:27017/
-      authentication-database: admin
-      database: mongodb
+      uri: mongodb://localhost:27017/mongodb
+
   config:
     import: "optional:configserver:"
   cloud:
     config:
-      uri: http://config-server:8888
+      uri: http://localhost:8888
     bus:
       refresh:
         enabled: true
       enabled: true
   kafka:
     bootstrap-servers: 34.101.242.30:9092
+
 management:
   endpoints:
     web:
       exposure:
         include:
           - prometheus
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: http://config-server:8888
+
+  data:
+    mongodb:
+      uri: mongodb://sarandy:sarandy@mongodb:27017/
+      authentication-database: admin
+      database: mongodb
